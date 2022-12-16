@@ -14,13 +14,18 @@ public class ItemInteractionHandler : MonoBehaviour
     public RawImage cursor;  // where the cursor picture is
     public Texture cursorDefault;
     public Texture cursorInteractable;
+
     public TMP_Text cursorLabel;
     private string cursorLabelText;
+
+    public TMP_Text bottomPanel;
+    private string bottomPanelText;
 
     void Start()
     {
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
+        bottomPanel.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -58,20 +63,20 @@ public class ItemInteractionHandler : MonoBehaviour
             {
                 // pick up an item
                 if (interactable.tag == "itemPickable") {
-                    AddToInventory();
+                    AddToInventory(interactable);
                     // deactivate item
                     // add inventory
                 }
 
                 // examine an object
                 else if (interactable.tag == "itemExaminable") {
-                    Examine();
+                    Examine(interactable);
                     // show ui text
                 }
 
                 // teleport
                 else if (interactable.tag == "portal") {
-                    Teleport();
+                    Teleport(interactable);
                 }
                 
             }
@@ -81,15 +86,30 @@ public class ItemInteractionHandler : MonoBehaviour
 
     }
 
-    private void AddToInventory() {
+    private void AddToInventory(GameObject interactable) {
         Debug.Log("TAKE object");
     }
 
-    private void Examine() {
+    private void Examine(GameObject interactable) {
         Debug.Log("EXAMINE");
+
+        // display flavor (bottom) text for several seconds if the object has flavor text = tagged with "flavored"
+        // todo: replace itemExaminable with flavored
+        if (interactable.tag == "itemExaminable") {
+            bottomPanel.gameObject.SetActive(true);
+
+            bottomPanelText = "I can't seem to be able to open this table. Maybe there's another way to move the key.";
+            bottomPanel.text = bottomPanelText;
+
+            Invoke("HideText", 5f);
+        }
     }
 
-    private void Teleport() {
+    private void HideText() {
+        bottomPanel.gameObject.SetActive(false);
+    }
+
+    private void Teleport(GameObject interactable) {
         Debug.Log("TELEPORT");
     }
 }
