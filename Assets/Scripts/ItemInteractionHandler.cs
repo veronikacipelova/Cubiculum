@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ItemInteractionHandler : MonoBehaviour
@@ -8,9 +9,15 @@ public class ItemInteractionHandler : MonoBehaviour
     private float interactionDistance = 2f;
     public LayerMask interactableObjects;
 
+    [Header("Cursor")]
+    public RawImage cursor;  // where the cursor picture is
+    public Texture cursorDefault;
+    public Texture cursorInteractable;
+
     void Start()
     {
-        Debug.Log("test");
+        Debug.Log("item interaction launched");
+        cursor.texture = cursorDefault;
     }
 
     void FixedUpdate()
@@ -21,15 +28,14 @@ public class ItemInteractionHandler : MonoBehaviour
         // var ray = Camera.main.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        cursor.texture = cursorDefault;
 
-
-        Debug.DrawRay(ray.origin, ray.direction * interactionDistance);
-
+        // Debug.DrawRay(ray.origin, ray.direction * interactionDistance);
 
         // if distance to an object is < Y
         if (Physics.Raycast(ray, out hit, interactionDistance, interactableObjects)) {
             var interactable = hit.transform.gameObject;
-            Debug.Log(interactable.tag);
+            cursor.texture = cursorInteractable;
 
             if (Input.GetKeyDown(KeyCode.E))
             {
