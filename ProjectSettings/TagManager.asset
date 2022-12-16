@@ -7,7 +7,6 @@ TagManager:
   - itemPickable
   - portal
   - itemExaminable
-  - flavored
   layers:
   - Default
   - TransparentFX

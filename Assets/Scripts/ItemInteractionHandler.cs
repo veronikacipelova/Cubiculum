@@ -93,16 +93,37 @@ public class ItemInteractionHandler : MonoBehaviour
     private void Examine(GameObject interactable) {
         Debug.Log("EXAMINE");
 
-        // display flavor (bottom) text for several seconds if the object has flavor text = tagged with "flavored"
-        // todo: replace itemExaminable with flavored
-        if (interactable.transform.GetChild(0).tag == "flavored") {
-            bottomPanel.gameObject.SetActive(true);
+        bottomPanel.gameObject.SetActive(true);
+        string bottomPanelText;
 
-            bottomPanelText = "I can't seem to be able to open this table. Maybe there's another way to move the key.";
-            bottomPanel.text = bottomPanelText;
-
-            Invoke("HideText", 5f);
+        // select flavor text based on the object's name
+        switch (interactable.name) {
+            case "puzzleLabyrinth":
+                bottomPanelText = "I can't seem to be able to open this table. Maybe there's another way to move the key.";
+                break;
+            case "puzzleTV":
+                bottomPanelText = "The power button seems to be missing. Perhaps there's something round I can replace it with?";
+                break;
+            case "puzzleBlacklight":
+                bottomPanelText = "Not everything is as it seems...";
+                break;
+            case "puzzlePainting":
+                bottomPanelText = "My eyes are not what they used to be… I wish there was something that could help me see all those details.";
+                break;
+            case "puzzlePainting1":
+                bottomPanelText = "What an intricate machine! I could use one of those on my ship.";
+                break;
+            case "puzzlePainting2":
+                bottomPanelText = "A city of so many opportunities, so many hopes… It's like just yesterday I arrived there on this train… I wonder how my old academy is doing.";
+                break;
+            case "puzzlePainting3":
+                bottomPanelText = "Charles, that rascal… I'll never forgive you for stealing my compass! Carrying it with such pride in his pocket at all times, too!";
+                break;
+            default: bottomPanelText = null; break;
         }
+        bottomPanel.text = bottomPanelText;
+
+        Invoke("HideText", bottomPanelText.Length > 77 ? 10f : 5f );
     }
 
     private void HideText() {

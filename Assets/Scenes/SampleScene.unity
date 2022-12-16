@@ -5879,7 +5879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9212102013396104104, guid: 7002960ec780d1f4ab33bb1496296157, type: 3}
       propertyPath: m_TagString
-      value: flavored
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 7002960ec780d1f4ab33bb1496296157, type: 3}
