@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class ItemInteractionHandler : MonoBehaviour
@@ -13,11 +14,13 @@ public class ItemInteractionHandler : MonoBehaviour
     public RawImage cursor;  // where the cursor picture is
     public Texture cursorDefault;
     public Texture cursorInteractable;
+    public TMP_Text cursorLabel;
+    private string cursorLabelText;
 
     void Start()
     {
-        Debug.Log("item interaction launched");
         cursor.texture = cursorDefault;
+        cursorLabel.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -29,13 +32,27 @@ public class ItemInteractionHandler : MonoBehaviour
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         cursor.texture = cursorDefault;
+        cursorLabel.gameObject.SetActive(false);
 
         // Debug.DrawRay(ray.origin, ray.direction * interactionDistance);
 
         // if distance to an object is < Y
         if (Physics.Raycast(ray, out hit, interactionDistance, interactableObjects)) {
             var interactable = hit.transform.gameObject;
+
+            // change cursor + show action text
             cursor.texture = cursorInteractable;
+            cursorLabel.gameObject.SetActive(true);
+
+            switch (interactable.tag) {
+                case "itemPickable": cursorLabelText = "Pick up"; break;
+                case "itemExaminable": cursorLabelText = "Examine"; break;
+                case "portal": cursorLabelText = "Enter"; break;
+                default: cursorLabelText = null; break;
+            }
+            cursorLabel.text = cursorLabelText;
+
+
 
             if (Input.GetKeyDown(KeyCode.E))
             {
