@@ -95,7 +95,7 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // display flavor (bottom) text for several seconds if the object has flavor text = tagged with "flavored"
         // todo: replace itemExaminable with flavored
-        if (interactable.tag == "itemExaminable") {
+        if (interactable.transform.GetChild(0).tag == "flavored") {
             bottomPanel.gameObject.SetActive(true);
 
             bottomPanelText = "I can't seem to be able to open this table. Maybe there's another way to move the key.";
