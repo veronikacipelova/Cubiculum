@@ -5815,7 +5815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 7002960ec780d1f4ab33bb1496296157, type: 3}
       propertyPath: m_Name
-      value: MetalChair
+      value: puzzlePainting2
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 7002960ec780d1f4ab33bb1496296157, type: 3}
       propertyPath: m_Layer

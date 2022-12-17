@@ -64,19 +64,21 @@ public class ItemInteractionHandler : MonoBehaviour
                 // pick up an item
                 if (interactable.tag == "itemPickable") {
                     AddToInventory(interactable);
-                    // deactivate item
-                    // add inventory
                 }
 
                 // examine an object
                 else if (interactable.tag == "itemExaminable") {
                     Examine(interactable);
-                    // show ui text
                 }
 
                 // teleport
                 else if (interactable.tag == "portal") {
                     Teleport(interactable);
+                }
+
+                // open a puzzle
+                else if (interactable.tag == "puzzle") {
+                    OpenPuzzle(interactable);
                 }
                 
             }
@@ -88,6 +90,8 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void AddToInventory(GameObject interactable) {
         Debug.Log("TAKE object");
+        // deactivate item
+        // add inventory
     }
 
     private void Examine(GameObject interactable) {
@@ -132,5 +136,9 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void Teleport(GameObject interactable) {
         Debug.Log("TELEPORT");
+    }
+
+    private void OpenPuzzle(GameObject interactable) {
+        Debug.Log("PUZZLE");
     }
 }
