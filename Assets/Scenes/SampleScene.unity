@@ -7858,7 +7858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1271270945}
   otherPortal: {fileID: 1937239186}
-  direction: 0
+  direction: 1
   isActive: 1
   offsetValue: 0.5
 --- !u!1 &963194225
@@ -8510,6 +8510,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 28d9eaa157e554264bb6632e37fc6576, type: 3}
   m_PrefabInstance: {fileID: 1063589819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1066350299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5795782620511830223, guid: cd02312138557724093b712e9301629a, type: 3}
+  m_PrefabInstance: {fileID: 1937239184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1066350303
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066350299}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13065448, y: 0.3144004, z: 2.4999995}
+  m_Center: {x: 0.0000006933039, y: 0.15720016, z: 0.00000022904872}
+--- !u!1 &1075945709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5795782620927935931, guid: cd02312138557724093b712e9301629a, type: 3}
+  m_PrefabInstance: {fileID: 1937239184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1075945713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075945709}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.86727315, y: 2.372455, z: 4.657571}
+  m_Center: {x: 0.1663653, y: 0.073412895, z: -1.2159727}
 --- !u!1 &1084668129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: f4285efefb82a4b62a2378a8762e2951, type: 3}
@@ -9294,7 +9330,7 @@ MonoBehaviour:
   otherPortal: {fileID: 776362046}
   direction: 1
   isActive: 1
-  offsetValue: 0.5
+  offsetValue: 1
 --- !u!1001 &1205258432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11470,7 +11506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1271270945}
   otherPortal: {fileID: 31247049}
-  direction: 2
+  direction: 0
   isActive: 1
   offsetValue: 0.5
 --- !u!4 &1497861107 stripped
@@ -11840,6 +11876,24 @@ Transform:
   m_Father: {fileID: 1026355642}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1566573571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2703321748262105738, guid: cd02312138557724093b712e9301629a, type: 3}
+  m_PrefabInstance: {fileID: 1937239184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1566573575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566573571}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6345637, y: 0.6345636, z: 0.052631054}
+  m_Center: {x: 0, y: -0.00000035762787, z: -0.00000047683716}
 --- !u!1 &1570118470
 GameObject:
   m_ObjectHideFlags: 0
@@ -15110,6 +15164,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: R3
       objectReference: {fileID: 0}
+    - target: {fileID: 2703321748262105738, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Name
+      value: r6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703321748262105738, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703321748262105738, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_TagString
+      value: itemMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249329864282170298, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891724454843607497, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625025782176836047, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5085802357958110011, guid: cd02312138557724093b712e9301629a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -15154,6 +15232,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5161213419728346226, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254861821023267237, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475556735658507175, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795782620511830223, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795782620511830223, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_TagString
+      value: itemCollectible
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795782620927935931, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795782620927935931, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_TagString
+      value: itemPickable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795782622073676969, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795782622073676969, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_TagString
+      value: puzzle
+      objectReference: {fileID: 0}
     - target: {fileID: 5795782622544534075, guid: cd02312138557724093b712e9301629a, type: 3}
       propertyPath: m_Name
       value: 3-portal_r3-r4
@@ -15165,6 +15279,18 @@ PrefabInstance:
     - target: {fileID: 5795782622544534075, guid: cd02312138557724093b712e9301629a, type: 3}
       propertyPath: m_TagString
       value: portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699704612747992967, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901216408113319557, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062990576430751154, guid: cd02312138557724093b712e9301629a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd02312138557724093b712e9301629a, type: 3}
@@ -15197,7 +15323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1271270945}
   otherPortal: {fileID: 1063589820}
-  direction: 2
+  direction: 0
   isActive: 1
   offsetValue: 0.5
 --- !u!65 &1937239191
