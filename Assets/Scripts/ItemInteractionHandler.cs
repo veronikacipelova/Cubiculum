@@ -86,11 +86,10 @@ public class ItemInteractionHandler : MonoBehaviour
             SetPlayerMovement(charlesLetter, isCharlesLetterActive);
         }
 
-        // puzzles -> close the bg
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            isUiBackgroundActive = false;
+        // puzzle ui related
+        if (isUiBackgroundActive) {
+            SetPlayerMovement(uiBackground, isUiBackgroundActive);
         }
-        uiBackground.gameObject.SetActive(isUiBackgroundActive);
     }
 
     void FixedUpdate()
@@ -122,47 +121,19 @@ public class ItemInteractionHandler : MonoBehaviour
             cursorLabel.text = cursorLabelText;
 
 
-
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // pick up an item
-                if (interactable.tag == "itemPickable") {
-                    AddToInventory(interactable);
-                }
-
-                // examine an object
-                else if (interactable.tag == "itemExaminable") {
-                    Examine(interactable);
-                }
-
-                // pick up a collectible
-                else if (interactable.tag == "itemCollectible") {
-                    AddCollectible(interactable);
-                }
-
-                // add map
-                else if (interactable.tag == "itemMap") {
-                    // show picked up map automatically
-                    isMinimapActive = true;
-                    AddMinimap(interactable);
-                }
-
-                // teleport
-                else if (interactable.tag == "portal") {
-                    Teleport(interactable);
-                }
-
-                // open a puzzle
-                else if (interactable.tag == "puzzle") {
-                    isUiBackgroundActive = true;
-                    OpenPuzzle(interactable);
-                }
-                
+                switch (interactable.tag) {
+                    case "itemPickable": AddToInventory(interactable); break;
+                    case "itemCollectible": AddCollectible(interactable);; break;
+                    case "itemExaminable": Examine(interactable); break;
+                    case "itemMap": AddMinimap(interactable); break;
+                    case "portal": Teleport(interactable); break;
+                    case "puzzle": OpenPuzzle(interactable); break;
+                    default: break;
+                }                
             }
-
         }
-
-
     }
 
     private void AddToInventory(GameObject interactable) {
@@ -172,21 +143,17 @@ public class ItemInteractionHandler : MonoBehaviour
     }
 
     private void SetPlayerMovement(RawImage uiElement, bool isUiElementActive) {
-        // isUiElementActive = true;
-        // uiElement.gameObject.SetActive(isUiElementActive);
 
         // remove player's movement
         // rb.velocity = Vector3.zero;
 
-        // while (isUiElementActive) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                // bring back player's movement
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            // bring back player's movement
 
-                // hide the ui element
-                isUiElementActive = false;
-                uiElement.gameObject.SetActive(isUiElementActive);
-            } 
-        // }
+            // hide the ui element
+            isUiElementActive = false;
+            uiElement.gameObject.SetActive(isUiElementActive);
+        }
     }
 
     private void Examine(GameObject interactable) {
@@ -196,30 +163,8 @@ public class ItemInteractionHandler : MonoBehaviour
         if (interactable.name == "charlesLetter") {
             SetPlayerMovement(charlesLetter, isCharlesLetterActive);
 
-                    isCharlesLetterActive = true;
-        charlesLetter.gameObject.SetActive(isCharlesLetterActive);
-
-            /*
             isCharlesLetterActive = true;
-            charlesLetter.gameObject.SetActive(true);
-            // rb.GetComponent(PlayerMovement).enabled = false;
-
-            // remove player's movement
-            // this?
-            // gameObject.Find("player GO name").GetComponent (PlayerMovement). enabled = false;
-
-            
-            while (isCharlesLetterActive) {
-                if (Input.GetKeyDown(KeyCode.Escape)) {
-                    // bring back player's movement
-
-                    // hide the letter
-                    isCharlesLetterActive = false;
-                    charlesLetter.gameObject.SetActive(isCharlesLetterActive);
-                } 
-            }
-            */
-
+            charlesLetter.gameObject.SetActive(isCharlesLetterActive);
             return;
         }
 
@@ -309,10 +254,13 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void OpenPuzzle(GameObject interactable) {
         Debug.Log("PUZZLE");
+        isUiBackgroundActive = true;
+        uiBackground.gameObject.SetActive(isUiBackgroundActive);
     }
 
     private void AddMinimap(GameObject interactable) {
         Debug.Log("MINIMAP");
+        isMinimapActive = true;
 
         // set the corresponding picked up minimap variable to true
         switch (interactable.name) {
