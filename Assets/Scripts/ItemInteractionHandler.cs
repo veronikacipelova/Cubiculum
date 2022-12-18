@@ -170,8 +170,11 @@ public class ItemInteractionHandler : MonoBehaviour
             case "puzzlePainting":
                 bottomPanelText = "My eyes are not what they used to be… I wish there was something that could help me see all those details.";
                 break;
+            case "puzzlePaintingCharles":
+                bottomPanelText = "Charles: Ah, this little thing? Served me well while it lasted, and now, perhaps, it will serve you.";
+                break;
             case "puzzlePainting1":
-                bottomPanelText = "What an intricate machine! I could use one of those on my ship.";
+                bottomPanelText = "What intricate machines! I could use one of those on my ship.";
                 break;
             case "puzzlePainting2":
                 bottomPanelText = "A city of so many opportunities, so many hopes… It's like just yesterday I arrived there on this train… I wonder how my old academy is doing.";
