@@ -5559,6 +5559,24 @@ Transform:
   m_Father: {fileID: 1562527241}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &680254021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2504000182208272840, guid: b8098cc04798dd84688fcc1940f55c96, type: 3}
+  m_PrefabInstance: {fileID: 1155629691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &680254022
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680254021}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6345637, y: 0.6345636, z: 0.052631058}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &685713703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7762,7 +7780,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8249666867671355812, guid: 543b434305b8c4571b128efb47e507be, type: 3}
   m_PrefabInstance: {fileID: 1661330604}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1012548312
+--- !u!65 &1012548315
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7913,6 +7931,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1028564684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2504000182406225864, guid: b8098cc04798dd84688fcc1940f55c96, type: 3}
+  m_PrefabInstance: {fileID: 1155629691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1028564685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028564684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6345638, y: 0.63456386, z: 0.052632786}
+  m_Center: {x: -0.0000009536743, y: -0.0000038146973, z: 0}
 --- !u!1 &1032701974 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 7527a8b00e887de4383b5e131c7b8b7b, type: 3}
@@ -8824,6 +8860,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3445267022947438591, guid: b8098cc04798dd84688fcc1940f55c96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3732347184055005587, guid: b8098cc04798dd84688fcc1940f55c96, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -9432,7 +9472,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8444739767229018533, guid: 543b434305b8c4571b128efb47e507be, type: 3}
   m_PrefabInstance: {fileID: 1661330604}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1220885728
+--- !u!65 &1220885731
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16988,7 +17028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1271270945}
-  otherPortal: {fileID: 2127771734}
+  otherPortal: {fileID: 1190841687}
   direction: 1
   isActive: 1
   offsetValue: 0.5
