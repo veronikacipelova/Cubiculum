@@ -160,7 +160,9 @@ public class ItemInteractionHandler : MonoBehaviour
                     case "itemCollectible": AddCollectible(interactable);; break;
                     case "itemExaminable": Examine(interactable); break;
                     case "itemMap": AddMinimap(interactable); break;
-                    case "portal": Teleport(interactable); break;
+                    case "portal":
+                        // var portalObject = hit.transform.GetComponent<Teleport>();
+                        Teleport(interactable, hit); break;
                     case "puzzle": OpenPuzzle(interactable); break;
                     default: break;
                 }                
@@ -257,14 +259,25 @@ public class ItemInteractionHandler : MonoBehaviour
         bottomPanel.gameObject.SetActive(false);
     }
 
-    private void Teleport(GameObject interactable) {
+    private void Teleport(GameObject interactable, RaycastHit hit) {
         Debug.Log("TELEPORT");
+        
+        var portalObject = hit.transform.GetComponent<Teleport>();
+
+        // if (portalObject != null)
+        // {
+        //     portalObject.TeleportPlayer();
+        //     return;
+        // }
+
 
         // check to see if the player entered the portal to then captain's cabin [end game]
         if (interactable.name == "portalCC") {
             Debug.Log("to CC");
 
-            rb.position = new Vector3(-0.27f, 1.5f, 10.13f);
+            portalObject.TeleportPlayer();
+
+            // rb.position = new Vector3(-0.27f, 1.5f, 10.13f);
 
             // unveil the shelf with collectibles
             curtain.SetActive(false);
@@ -275,6 +288,10 @@ public class ItemInteractionHandler : MonoBehaviour
         // portal that takes the player to main menu
         else if (interactable.name == "portalExit") {
             Debug.Log("to MAIN MENU");
+        }
+
+        else {
+            portalObject.TeleportPlayer();
         }
     }
 
