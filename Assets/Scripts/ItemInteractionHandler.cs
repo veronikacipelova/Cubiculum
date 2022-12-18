@@ -97,6 +97,15 @@ public class ItemInteractionHandler : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+            InventoryManager.Instance.showInventory();
+        if (Input.GetKeyDown(KeyCode.R))
+            InventoryManager.Instance.HighlightNextItem('R');
+        if (Input.GetKeyDown(KeyCode.F))
+            InventoryManager.Instance.HighlightNextItem('F');
+        if (Input.GetKeyDown(KeyCode.Return))
+            InventoryManager.Instance.ConfirmSelected();
+
         // flip the visibility of minimap if M is pressed
         if (Input.GetKeyDown(KeyCode.M)) {
             isMinimapActive = !isMinimapActive;
@@ -122,6 +131,7 @@ public class ItemInteractionHandler : MonoBehaviour
 
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
+
 
         // if distance to an object is < Y
         if (Physics.Raycast(ray, out hit, interactionDistance, interactableObjects)) {
