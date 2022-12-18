@@ -9903,6 +9903,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4630407730912162742, guid: 54d4590ade9ac1b4b8b7132f9b0b9bd4, type: 3}
   m_PrefabInstance: {fileID: 1571305622}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1271270946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3979864532409515106, guid: 54d4590ade9ac1b4b8b7132f9b0b9bd4, type: 3}
+  m_PrefabInstance: {fileID: 1571305622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271270945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c29c238c59c0b4c9519a7f258f390a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1271270949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9925,10 +9936,17 @@ MonoBehaviour:
   bottomPanel: {fileID: 1597826063}
   minimap: {fileID: 335641004}
   uiBackground: {fileID: 918389542}
+  PlayerMovement: {fileID: 1271270946}
   curtain: {fileID: 768889688}
   portalEnter: {fileID: 1190841686}
   portalExit: {fileID: 1624366540}
   charlesLetter: {fileID: 1002464679}
+  collectibleR1: {fileID: 0}
+  collectibleR2: {fileID: 0}
+  collectibleR3: {fileID: 0}
+  collectibleR4: {fileID: 0}
+  collectibleR5: {fileID: 0}
+  collectibleR6: {fileID: 0}
 --- !u!4 &1276764860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480340, guid: 2f1666ad9b7fdd7459a360619d6ccffd, type: 3}

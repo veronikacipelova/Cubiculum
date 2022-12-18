@@ -47,6 +47,7 @@ public class ItemInteractionHandler : MonoBehaviour
     private bool isUiBackgroundActive = false;
 
     Rigidbody rb;
+    public PlayerMovement PlayerMovement;
 
     [Header("CC")]
     public GameObject curtain;  // hides the collectibles
@@ -55,22 +56,42 @@ public class ItemInteractionHandler : MonoBehaviour
     public RawImage charlesLetter;  // charles letter zoomed in so that the player can read it
     private bool isCharlesLetterActive = false;
 
+    [Header("Collectibles")]
+    public GameObject collectibleR1;
+    public GameObject collectibleR2;
+    public GameObject collectibleR3;
+    public GameObject collectibleR4;
+    public GameObject collectibleR5;
+    public GameObject collectibleR6;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
+        // charles letter zoom-in
         charlesLetter.gameObject.SetActive(isCharlesLetterActive);
 
+        // CC portals
         portalEnter.SetActive(true);
         portalExit.SetActive(false);
 
+        // UI elements
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
         bottomPanel.gameObject.SetActive(false);
         uiBackground.gameObject.SetActive(false);
         
+        // minimaps
         minimap.gameObject.SetActive(false);
         minimapFolder = "Map pieces/";
+
+        // collectibles
+        collectibleR1.SetActive(false);
+        collectibleR2.SetActive(false);
+        collectibleR3.SetActive(false);
+        collectibleR4.SetActive(false);
+        collectibleR5.SetActive(false);
+        collectibleR6.SetActive(false);
     }
 
     void Update()
@@ -145,10 +166,12 @@ public class ItemInteractionHandler : MonoBehaviour
     private void SetPlayerMovement(RawImage uiElement, bool isUiElementActive) {
 
         // remove player's movement
-        // rb.velocity = Vector3.zero;
+        // playerMovementScript.enabled = false;
+        // rb.MoveSpeed = Vector3.zero;
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             // bring back player's movement
+            PlayerMovement.enabled = true;
 
             // hide the ui element
             isUiElementActive = false;
@@ -161,6 +184,8 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // if the examined object is charles letter, open a 2d image and exit function upon esc
         if (interactable.name == "charlesLetter") {
+        PlayerMovement.enabled = false;
+
             SetPlayerMovement(charlesLetter, isCharlesLetterActive);
 
             isCharlesLetterActive = true;
