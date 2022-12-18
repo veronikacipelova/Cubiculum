@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 using TMPro;
 
 
@@ -175,16 +174,6 @@ public class ItemInteractionHandler : MonoBehaviour
         }
     }
 
-    // private void AddToInventory(GameObject interactable, RaycastHit hit) {
-    //     Debug.Log("TAKE object");
-    //     hit.transform.gameObject
-
-    //     if (hit.transform.TryGetComponent(out objectToTake))
-    //     {
-    //         objectToTake.Disappear();
-    //     }
-    // }
-
     private void SetPlayerMovement(RawImage uiElement, bool isUiElementActive) {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             // bring back player's movement
@@ -252,13 +241,16 @@ public class ItemInteractionHandler : MonoBehaviour
     private void AddCollectible(GameObject interactable) {
         Debug.Log("COLLECTIBLE");
 
-        // if a collectible is picked up, it is displayed in CC 
-        // switch (interactable.name) {
-        //     case "collectibleR": collectibleR.SetActive(true); break;
-        //     default: break;
-        // }
-
-        // SetActive the trophy object in CC
+        // if a collectible is picked up, it is displayed in CC -> SetActive the trophy object in CC
+        switch (interactable.name) {
+            case "collectibleR1": collectibleR1.SetActive(true); break;
+            case "collectibleR2": collectibleR2.SetActive(true); break;
+            case "collectibleR3": collectibleR3.SetActive(true); break;
+            case "collectibleR4": collectibleR4.SetActive(true); break;
+            case "collectibleR5": collectibleR5.SetActive(true); break;
+            case "collectibleR6": collectibleR6.SetActive(true); break;
+            default: break;
+        }
 
         // destroy the collectible - we don't need to add it to the inventory
         Destroy(interactable);
