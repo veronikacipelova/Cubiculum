@@ -40,6 +40,8 @@ public class ItemInteractionHandler : MonoBehaviour
     private bool r5 = false;
     private bool r6 = false;
 
+     private GetTaken objectToTake;
+
 
     // background for puzzles (and various UI elements)
     [Header("UIBackground")]
@@ -156,7 +158,12 @@ public class ItemInteractionHandler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 switch (interactable.tag) {
-                    case "itemPickable": AddToInventory(interactable); break;
+                    case "itemPickable":
+                        if (hit.transform.TryGetComponent(out objectToTake)) {
+                            objectToTake.Disappear();
+                        }
+                        // AddToInventory(interactable, hit);
+                        break;
                     case "itemCollectible": AddCollectible(interactable);; break;
                     case "itemExaminable": Examine(interactable); break;
                     case "itemMap": AddMinimap(interactable); break;
@@ -168,11 +175,15 @@ public class ItemInteractionHandler : MonoBehaviour
         }
     }
 
-    private void AddToInventory(GameObject interactable) {
-        Debug.Log("TAKE object");
-        // deactivate item
-        // add inventory
-    }
+    // private void AddToInventory(GameObject interactable, RaycastHit hit) {
+    //     Debug.Log("TAKE object");
+    //     hit.transform.gameObject
+
+    //     if (hit.transform.TryGetComponent(out objectToTake))
+    //     {
+    //         objectToTake.Disappear();
+    //     }
+    // }
 
     private void SetPlayerMovement(RawImage uiElement, bool isUiElementActive) {
         if (Input.GetKeyDown(KeyCode.Escape)) {
