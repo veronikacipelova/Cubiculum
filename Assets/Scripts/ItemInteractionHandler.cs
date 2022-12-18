@@ -48,7 +48,10 @@ public class ItemInteractionHandler : MonoBehaviour
 
     Rigidbody rb;
 
-    [Header("CC - Charles Letter")]
+    [Header("CC")]
+    public GameObject curtain;  // hides the collectibles
+    public GameObject portalEnter; // portal for starting the game [to R1]
+    public GameObject portalExit;  // portal for exiting the game [to the main menu]
     public RawImage charlesLetter;  // charles letter zoomed in so that the player can read it
     private bool isCharlesLetterActive = false;
 
@@ -56,13 +59,15 @@ public class ItemInteractionHandler : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        uiBackground.gameObject.SetActive(false);
-
         charlesLetter.gameObject.SetActive(isCharlesLetterActive);
+
+        portalEnter.SetActive(true);
+        portalExit.SetActive(false);
 
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
         bottomPanel.gameObject.SetActive(false);
+        uiBackground.gameObject.SetActive(false);
         
         minimap.gameObject.SetActive(false);
         minimapFolder = "Map pieces/";
@@ -76,6 +81,12 @@ public class ItemInteractionHandler : MonoBehaviour
         }
         minimap.gameObject.SetActive(isMinimapActive);
 
+        // charles letter related
+        if (isCharlesLetterActive) {
+            SetPlayerMovement(charlesLetter, isCharlesLetterActive);
+        }
+
+        // puzzles -> close the bg
         if (Input.GetKeyDown(KeyCode.Escape)) {
             isUiBackgroundActive = false;
         }
@@ -160,12 +171,35 @@ public class ItemInteractionHandler : MonoBehaviour
         // add inventory
     }
 
+    private void SetPlayerMovement(RawImage uiElement, bool isUiElementActive) {
+        // isUiElementActive = true;
+        // uiElement.gameObject.SetActive(isUiElementActive);
+
+        // remove player's movement
+        // rb.velocity = Vector3.zero;
+
+        // while (isUiElementActive) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                // bring back player's movement
+
+                // hide the ui element
+                isUiElementActive = false;
+                uiElement.gameObject.SetActive(isUiElementActive);
+            } 
+        // }
+    }
+
     private void Examine(GameObject interactable) {
         Debug.Log("EXAMINE");
 
         // if the examined object is charles letter, open a 2d image and exit function upon esc
         if (interactable.name == "charlesLetter") {
+            SetPlayerMovement(charlesLetter, isCharlesLetterActive);
 
+                    isCharlesLetterActive = true;
+        charlesLetter.gameObject.SetActive(isCharlesLetterActive);
+
+            /*
             isCharlesLetterActive = true;
             charlesLetter.gameObject.SetActive(true);
             // rb.GetComponent(PlayerMovement).enabled = false;
@@ -184,6 +218,7 @@ public class ItemInteractionHandler : MonoBehaviour
                     charlesLetter.gameObject.SetActive(isCharlesLetterActive);
                 } 
             }
+            */
 
             return;
         }
@@ -257,11 +292,13 @@ public class ItemInteractionHandler : MonoBehaviour
         // check to see if the player entered the portal to then captain's cabin [end game]
         if (interactable.name == "portalCC") {
             Debug.Log("to CC");
+
             rb.position = new Vector3(-0.27f, 1.5f, 10.13f);
 
-
             // unveil the shelf with collectibles
-
+            curtain.SetActive(false);
+            portalEnter.SetActive(false);
+            portalExit.SetActive(true);
         }
 
         // portal that takes the player to main menu
