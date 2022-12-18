@@ -48,11 +48,17 @@ public class ItemInteractionHandler : MonoBehaviour
 
     Rigidbody rb;
 
+    [Header("CC - Charles Letter")]
+    public RawImage charlesLetter;  // charles letter zoomed in so that the player can read it
+    private bool isCharlesLetterActive = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         uiBackground.gameObject.SetActive(false);
+
+        charlesLetter.gameObject.SetActive(isCharlesLetterActive);
 
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
@@ -157,6 +163,31 @@ public class ItemInteractionHandler : MonoBehaviour
     private void Examine(GameObject interactable) {
         Debug.Log("EXAMINE");
 
+        // if the examined object is charles letter, open a 2d image and exit function upon esc
+        if (interactable.name == "charlesLetter") {
+
+            isCharlesLetterActive = true;
+            charlesLetter.gameObject.SetActive(true);
+            // rb.GetComponent(PlayerMovement).enabled = false;
+
+            // remove player's movement
+            // this?
+            // gameObject.Find("player GO name").GetComponent (PlayerMovement). enabled = false;
+
+            
+            while (isCharlesLetterActive) {
+                if (Input.GetKeyDown(KeyCode.Escape)) {
+                    // bring back player's movement
+
+                    // hide the letter
+                    isCharlesLetterActive = false;
+                    charlesLetter.gameObject.SetActive(isCharlesLetterActive);
+                } 
+            }
+
+            return;
+        }
+
         bottomPanel.gameObject.SetActive(true);
         string bottomPanelText;
 
@@ -196,7 +227,21 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void AddCollectible(GameObject interactable) {
         Debug.Log("COLLECTIBLE");
+
+        // TELEPORT THE COLLECTIBLE INSTEAD OF DESTROYIGN IT !LUL
+        // switch (interactable.name) {
+        //     case "r1": r1 = true; break;
+        //     case "r2": r2 = true; break;
+        //     case "r3": r3 = true; break;
+        //     case "r4": r4 = true; break;
+        //     case "r5": r5 = true; break;
+        //     case "r6": r6 = true; break;
+        //     default: break;
+        // }
+
+
         // SetActive the trophy object in CC
+
 
         // destroy the collectible - we don't need to add it to the inventory
         Destroy(interactable);
@@ -213,6 +258,9 @@ public class ItemInteractionHandler : MonoBehaviour
         if (interactable.name == "portalCC") {
             Debug.Log("to CC");
             rb.position = new Vector3(-0.27f, 1.5f, 10.13f);
+
+
+            // unveil the shelf with collectibles
 
         }
 
