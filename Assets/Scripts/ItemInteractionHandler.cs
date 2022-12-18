@@ -46,8 +46,12 @@ public class ItemInteractionHandler : MonoBehaviour
     public RawImage uiBackground;
     private bool isUiBackgroundActive = false;
 
+    Rigidbody rb;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+
         uiBackground.gameObject.SetActive(false);
 
         cursor.texture = cursorDefault;
@@ -204,6 +208,18 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void Teleport(GameObject interactable) {
         Debug.Log("TELEPORT");
+
+        // check to see if the player entered the portal to then captain's cabin [end game]
+        if (interactable.name == "portalCC") {
+            Debug.Log("to CC");
+            rb.position = new Vector3(-0.27f, 1.5f, 10.13f);
+
+        }
+
+        // portal that takes the player to main menu
+        else if (interactable.name == "portalExit") {
+            Debug.Log("to MAIN MENU");
+        }
     }
 
     private void OpenPuzzle(GameObject interactable) {
