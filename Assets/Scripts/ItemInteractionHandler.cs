@@ -40,8 +40,16 @@ public class ItemInteractionHandler : MonoBehaviour
     private bool r5 = false;
     private bool r6 = false;
 
+
+    // background for puzzles (and various UI elements)
+    [Header("UIBackground")]
+    public RawImage uiBackground;
+    private bool isUiBackgroundActive = false;
+
     void Start()
     {
+        uiBackground.gameObject.SetActive(false);
+
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
         bottomPanel.gameObject.SetActive(false);
@@ -57,6 +65,11 @@ public class ItemInteractionHandler : MonoBehaviour
             isMinimapActive = !isMinimapActive;
         }
         minimap.gameObject.SetActive(isMinimapActive);
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            isUiBackgroundActive = false;
+        }
+        uiBackground.gameObject.SetActive(isUiBackgroundActive);
     }
 
     void FixedUpdate()
@@ -78,6 +91,7 @@ public class ItemInteractionHandler : MonoBehaviour
 
             switch (interactable.tag) {
                 case "itemPickable": cursorLabelText = "Pick up"; break;
+                case "itemCollectible": cursorLabelText = "Pick up"; break;
                 case "itemExaminable": cursorLabelText = "Examine"; break;
                 case "itemMap": cursorLabelText = "Pick up"; break;
                 case "portal": cursorLabelText = "Enter"; break;
@@ -100,6 +114,11 @@ public class ItemInteractionHandler : MonoBehaviour
                     Examine(interactable);
                 }
 
+                // pick up a collectible
+                else if (interactable.tag == "itemCollectible") {
+                    AddCollectible(interactable);
+                }
+
                 // add map
                 else if (interactable.tag == "itemMap") {
                     // show picked up map automatically
@@ -114,6 +133,7 @@ public class ItemInteractionHandler : MonoBehaviour
 
                 // open a puzzle
                 else if (interactable.tag == "puzzle") {
+                    isUiBackgroundActive = true;
                     OpenPuzzle(interactable);
                 }
                 
@@ -164,6 +184,15 @@ public class ItemInteractionHandler : MonoBehaviour
         bottomPanel.text = bottomPanelText;
 
         Invoke("HideText", bottomPanelText.Length > 77 ? 10f : 5f );
+    }
+
+
+    private void AddCollectible(GameObject interactable) {
+        Debug.Log("COLLECTIBLE");
+        // SetActive the trophy object in CC
+
+        // destroy the collectible - we don't need to add it to the inventory
+        Destroy(interactable);
     }
 
     private void HideText() {

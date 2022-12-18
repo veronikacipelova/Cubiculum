@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - portal
+  - itemCollectible
+  - itemMap
+  - puzzle
+  - itemExaminable
+  - itemPickable
   layers:
   - Default
   - TransparentFX
@@ -12,7 +18,7 @@ TagManager:
   - Water
   - UI
   - whatIsGround
-  - 
+  - interactable
   - 
   - 
   - 
