@@ -48,6 +48,7 @@ public class ItemInteractionHandler : MonoBehaviour
 
     Rigidbody rb;
     public PlayerMovement PlayerMovement;
+    // public MoveCamera MoveCamera;
 
     [Header("CC")]
     public GameObject curtain;  // hides the collectibles
@@ -164,14 +165,10 @@ public class ItemInteractionHandler : MonoBehaviour
     }
 
     private void SetPlayerMovement(RawImage uiElement, bool isUiElementActive) {
-
-        // remove player's movement
-        // playerMovementScript.enabled = false;
-        // rb.MoveSpeed = Vector3.zero;
-
         if (Input.GetKeyDown(KeyCode.Escape)) {
             // bring back player's movement
             PlayerMovement.enabled = true;
+            // MoveCamera.enabled = true;
 
             // hide the ui element
             isUiElementActive = false;
@@ -184,7 +181,8 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // if the examined object is charles letter, open a 2d image and exit function upon esc
         if (interactable.name == "charlesLetter") {
-        PlayerMovement.enabled = false;
+            PlayerMovement.enabled = false;
+            // MoveCamera.enabled = false;
 
             SetPlayerMovement(charlesLetter, isCharlesLetterActive);
 
@@ -233,20 +231,13 @@ public class ItemInteractionHandler : MonoBehaviour
     private void AddCollectible(GameObject interactable) {
         Debug.Log("COLLECTIBLE");
 
-        // TELEPORT THE COLLECTIBLE INSTEAD OF DESTROYIGN IT !LUL
+        // if a collectible is picked up, it is displayed in CC 
         // switch (interactable.name) {
-        //     case "r1": r1 = true; break;
-        //     case "r2": r2 = true; break;
-        //     case "r3": r3 = true; break;
-        //     case "r4": r4 = true; break;
-        //     case "r5": r5 = true; break;
-        //     case "r6": r6 = true; break;
+        //     case "collectibleR": collectibleR.SetActive(true); break;
         //     default: break;
         // }
 
-
         // SetActive the trophy object in CC
-
 
         // destroy the collectible - we don't need to add it to the inventory
         Destroy(interactable);
@@ -279,8 +270,12 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void OpenPuzzle(GameObject interactable) {
         Debug.Log("PUZZLE");
+
         isUiBackgroundActive = true;
         uiBackground.gameObject.SetActive(isUiBackgroundActive);
+
+        PlayerMovement.enabled = false;
+        // MoveCamera.enabled = false;
     }
 
     private void AddMinimap(GameObject interactable) {
