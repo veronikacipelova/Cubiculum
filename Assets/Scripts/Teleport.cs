@@ -37,7 +37,7 @@ public class Teleport : MonoBehaviour
             case 1: // top wall
                 offsetx = 0;
                 offsetz = offsetValue;
-                playerRotY = 180f;
+                playerRotY = 0f;
                 break;
 
             case 2: // left wall
@@ -49,7 +49,7 @@ public class Teleport : MonoBehaviour
             case 3: // bottom wall
                 offsetx = 0;
                 offsetz = -offsetValue;
-                playerRotY = 0f;
+                playerRotY = 180f;
                 break;
 
             default:
@@ -71,8 +71,8 @@ public class Teleport : MonoBehaviour
     {
         if(isActive == true)
         {
-            Player.transform.position = otherPortal.transform.position + offset;
-            // Player.transform.Rotate(playerRotation, Space.World);
+            Player.transform.position = otherPortal.transform.position + offset
+            Player.transform.eulerAngles = playerRotation;
         }
     }
 }
