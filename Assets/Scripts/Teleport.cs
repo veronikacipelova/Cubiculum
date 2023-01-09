@@ -71,7 +71,7 @@ public class Teleport : MonoBehaviour
     {
         if(isActive == true)
         {
-            Player.transform.position = otherPortal.transform.position + offset
+            Player.transform.position = otherPortal.transform.position + offset;
             Player.transform.eulerAngles = playerRotation;
         }
     }
