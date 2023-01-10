@@ -70,10 +70,10 @@ public class ItemInteractionHandler : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        // charles letter zoom-in
+        // [CC] charles letter zoom-in
         charlesLetter.gameObject.SetActive(isCharlesLetterActive);
 
-        // CC portals
+        // [CC] portals
         portalEnter.SetActive(true);
         portalExit.SetActive(false);
 
@@ -87,7 +87,7 @@ public class ItemInteractionHandler : MonoBehaviour
         minimap.gameObject.SetActive(false);
         minimapFolder = "Map pieces/";
 
-        // collectibles
+        // [CC] collectibles
         collectibleR1.SetActive(false);
         collectibleR2.SetActive(false);
         collectibleR3.SetActive(false);
@@ -243,12 +243,12 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // if a collectible is picked up, it is displayed in CC -> SetActive the trophy object in CC
         switch (interactable.name) {
-            case "collectibleR1": collectibleR1.SetActive(true); break;
-            case "collectibleR2": collectibleR2.SetActive(true); break;
-            case "collectibleR3": collectibleR3.SetActive(true); break;
-            case "collectibleR4": collectibleR4.SetActive(true); break;
-            case "collectibleR5": collectibleR5.SetActive(true); break;
-            case "collectibleR6": collectibleR6.SetActive(true); break;
+            case "collectible-r1": collectibleR1.SetActive(true); break;
+            case "collectible-r2": collectibleR2.SetActive(true); break;
+            case "collectible-r3": collectibleR3.SetActive(true); break;
+            case "collectible-r4": collectibleR4.SetActive(true); break;
+            case "collectible-r5": collectibleR5.SetActive(true); break;
+            case "collectible-r6": collectibleR6.SetActive(true); break;
             default: break;
         }
 
@@ -312,18 +312,17 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // set the corresponding picked up minimap variable to true
         switch (interactable.name) {
-            case "r1": r1 = true; break;
-            case "r2": r2 = true; break;
-            case "r3": r3 = true; break;
-            case "r4": r4 = true; break;
-            case "r5": r5 = true; break;
-            case "r6": r6 = true; break;
+            case "map-r1": r1 = true; break;
+            case "map-r2": r2 = true; break;
+            case "map-r3": r3 = true; break;
+            case "map-r4": r4 = true; break;
+            case "map-r5": r5 = true; break;
+            case "map-r6": r6 = true; break;
             default: break;
         }
 
         // decide on which map to display
         minimapName = getMinimapName();       
-
 
         // load and set the actual texture of the minimap
         minimapTexture = Resources.Load<Texture>(minimapFolder + minimapName);
