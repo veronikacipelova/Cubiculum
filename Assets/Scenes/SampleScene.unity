@@ -12756,6 +12756,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3979864532409515106, guid: 54d4590ade9ac1b4b8b7132f9b0b9bd4, type: 3}
+      propertyPath: jumpForce
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979864532409515106, guid: 54d4590ade9ac1b4b8b7132f9b0b9bd4, type: 3}
+      propertyPath: jumpCooldown
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979864532409515106, guid: 54d4590ade9ac1b4b8b7132f9b0b9bd4, type: 3}
+      propertyPath: airMultiplier
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3979864532589868573, guid: 54d4590ade9ac1b4b8b7132f9b0b9bd4, type: 3}
       propertyPath: m_TagString
       value: MainCamera
