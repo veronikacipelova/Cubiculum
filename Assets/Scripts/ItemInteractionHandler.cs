@@ -39,7 +39,7 @@ public class ItemInteractionHandler : MonoBehaviour
     private bool r5 = false;
     private bool r6 = false;
 
-     private GetTaken objectToTake;
+    private GetTaken objectToTake;
 
 
     // background for puzzles (and various UI elements)
@@ -264,27 +264,36 @@ public class ItemInteractionHandler : MonoBehaviour
         Debug.Log("TELEPORT");
         
         var portalObject = hit.transform.GetComponent<Teleport>();
+        portalObject.TeleportPlayer();
 
         // check to see if the player entered the portal to then captain's cabin [end game]
         if (interactable.name == "portalCC") {
             Debug.Log("to CC");
 
-            portalObject.TeleportPlayer();
-
             // unveil the shelf with collectibles
             curtain.SetActive(false);
+
+            // hide the START portal, show the END portal
             portalEnter.SetActive(false);
             portalExit.SetActive(true);
         }
 
-        // portal that takes the player to main menu
+        // portal that potentially takes the player to main menu
+        // currently it resets the game by launching the player into R1 (getting them stuck in a lore loop)
         else if (interactable.name == "portalExit") {
             Debug.Log("to MAIN MENU");
+            ResetGame();
         }
+    }
 
-        else {
-            portalObject.TeleportPlayer();
-        }
+    private void ResetGame() {
+        // [CC] no need to reset the portals/hide the curtain -- we will arrive at the same scene
+
+        // [CC] remove the collectibles from the shelves, if any were present
+
+        // activate collected objects again -- maps, collectibles, puzzle objects
+
+        // reset the puzzles
     }
 
     private void OpenPuzzle(GameObject interactable) {
