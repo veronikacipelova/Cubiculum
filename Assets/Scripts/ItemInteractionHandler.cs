@@ -43,9 +43,11 @@ public class ItemInteractionHandler : MonoBehaviour
 
 
     // background for puzzles (and various UI elements)
-    [Header("UIBackground")]
+    [Header("UI")]
     public RawImage uiBackground;
     private bool isUiBackgroundActive = false;
+    public GridLayoutGroup controls;
+    private bool isControlsActive = false;
 
     Rigidbody rb;
     public PlayerMovement PlayerMovement;
@@ -82,6 +84,7 @@ public class ItemInteractionHandler : MonoBehaviour
         cursorLabel.gameObject.SetActive(false);
         bottomPanel.gameObject.SetActive(false);
         uiBackground.gameObject.SetActive(false);
+        controls.gameObject.SetActive(false);
         
         // minimaps
         minimap.gameObject.SetActive(false);
@@ -106,6 +109,15 @@ public class ItemInteractionHandler : MonoBehaviour
             InventoryManager.Instance.HighlightNextItem('F');
         if (Input.GetKeyDown(KeyCode.Return))
             InventoryManager.Instance.ConfirmSelected();
+
+        // show the controls screen -> show the ui bg + the controls text overlay
+        if (Input.GetKeyDown(KeyCode.C)) {
+            isControlsActive = !isControlsActive;
+            isUiBackgroundActive = !isUiBackgroundActive;
+
+            controls.gameObject.SetActive(isControlsActive);
+            uiBackground.gameObject.SetActive(isUiBackgroundActive);
+        }
 
         // flip the visibility of minimap if M is pressed
         if (Input.GetKeyDown(KeyCode.M)) {
