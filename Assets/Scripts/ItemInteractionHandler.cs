@@ -82,9 +82,13 @@ public class ItemInteractionHandler : MonoBehaviour
         // UI elements
         cursor.texture = cursorDefault;
         cursorLabel.gameObject.SetActive(false);
-        bottomPanel.gameObject.SetActive(false);
         uiBackground.gameObject.SetActive(false);
         controls.gameObject.SetActive(false);
+
+        // show the hint for the "controls" window - hide after some time
+        bottomPanel.gameObject.SetActive(true);
+        bottomPanel.text = "What? Where... where am I?\n[ press C to show controls ]";
+        Invoke("HideText", 8f);
         
         // minimaps
         minimap.gameObject.SetActive(false);
@@ -117,6 +121,7 @@ public class ItemInteractionHandler : MonoBehaviour
 
             controls.gameObject.SetActive(isControlsActive);
             uiBackground.gameObject.SetActive(isUiBackgroundActive);
+            bottomPanel.gameObject.SetActive(false);
         }
 
         // flip the visibility of minimap if M is pressed
@@ -246,7 +251,7 @@ public class ItemInteractionHandler : MonoBehaviour
         }
         bottomPanel.text = bottomPanelText;
 
-        Invoke("HideText", bottomPanelText.Length > 77 ? 10f : 5f );
+        Invoke("HideText", bottomPanelText.Length > 77 ? 8f : 5f );
     }
 
 
