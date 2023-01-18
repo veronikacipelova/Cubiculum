@@ -40,6 +40,10 @@ public class InventoryManager : MonoBehaviour
         Instance = this;    
     }
 
+    public List<GameObject> getItemInstances() {
+        return ItemsInstances;
+    }
+
     public void Add(Item item)
     {
         ItemAmount++;

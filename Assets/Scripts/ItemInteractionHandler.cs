@@ -253,7 +253,14 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // the player examines PAINTINGS
         else {
-            // todo: CHECK IF THE PLAYER HAS THE MAGNIFYING GLASS
+            // check if the player has the magnifying glass
+            // todo: look at optimizations? the list is small though. also, is this the correct spot for this?
+            List<GameObject> inventory = InventoryManager.Instance.getItemInstances();
+            // WAITT PUT THIS INTO LIKE. WHERE THE ITEM IS PICKED UP. YO
+
+            // todo: @ morning me. do it so it works rn and refactor later
+
+            
             bool hasMagnifyingGlass = true;
 
             // the player doesn't have magnifying glass - any painting would display a hint
