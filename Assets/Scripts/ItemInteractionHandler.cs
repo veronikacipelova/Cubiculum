@@ -68,6 +68,11 @@ public class ItemInteractionHandler : MonoBehaviour
     public GameObject collectibleR5;
     public GameObject collectibleR6;
 
+
+    // [ puzzle 3 ] -- paintings
+    private bool hasMagnifyingGlass = false;
+    private bool isCompassPaintingDiscovered = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -180,7 +185,7 @@ public class ItemInteractionHandler : MonoBehaviour
                         }
                         // AddToInventory(interactable, hit);
                         break;
-                    case "itemCollectible": AddCollectible(interactable);; break;
+                    case "itemCollectible": AddCollectible(interactable); break;
                     case "itemExaminable": Examine(interactable); break;
                     case "itemMap": AddMinimap(interactable); break;
                     case "portal": Teleport(interactable, hit); break;
@@ -218,40 +223,87 @@ public class ItemInteractionHandler : MonoBehaviour
             return;
         }
 
+        // if it's any other object, it's going to have a text description popping up at the bottom
         bottomPanel.gameObject.SetActive(true);
-        string bottomPanelText;
+        string bottomPanelText = null;
 
-        // select flavor text based on the object's name
-        switch (interactable.name) {
-            case "puzzleLabyrinth":
-                bottomPanelText = "I can't seem to be able to open this table. Maybe there's another way to move the key.";
-                break;
-            case "puzzleTV":
-                bottomPanelText = "The power button seems to be missing. Perhaps there's something round I can replace it with?";
-                break;
-            case "puzzleBlacklight":
-                bottomPanelText = "Not everything is as it seems...";
-                break;
-            case "puzzlePainting":
-                bottomPanelText = "My eyes are not what they used to be… I wish there was something that could help me see all those details.";
-                break;
-            case "puzzlePaintingCharles":
-                bottomPanelText = "Charles: Ah, this little thing? Served me well while it lasted, and now, perhaps, it will serve you.";
-                break;
-            case "puzzlePainting1":
-                bottomPanelText = "What intricate machines! I could use one of those on my ship.";
-                break;
-            case "puzzlePainting2":
-                bottomPanelText = "A city of so many opportunities, so many hopes… It's like just yesterday I arrived there on this train… I wonder how my old academy is doing.";
-                break;
-            case "puzzlePainting3":
-                bottomPanelText = "Charles, that rascal… I'll never forgive you for stealing my compass! Carrying it with such pride in his pocket at all times, too!";
-                break;
-            default: bottomPanelText = null; break;
+        // case-insensitive check what kind of interactable we're working with
+        bool isPainting = interactable.name.ToLower().Contains("painting");
+
+        // todo: reexamine mechanics. move to the particular objects/puzzle interaction?
+        // the player examines NON-PAINTINGS
+        if (!isPainting) {
+            switch (interactable.name) {
+                case "puzzleLabyrinth":
+                    bottomPanelText = "I can't seem to be able to open this table.\n"
+                                    + "Maybe there's another way to move the key.";
+                    break;
+                case "puzzleTV":
+                    bottomPanelText = "The power button seems to be missing. Perhaps there's something round\n"
+                                    + "I can replace it with?";
+                    break;
+                case "puzzleBlacklight":
+                    bottomPanelText = "Not everything is as it seems...";
+                    break;
+                default:
+                    bottomPanelText = null; break;
+            }
         }
-        bottomPanel.text = bottomPanelText;
 
-        Invoke("HideText", bottomPanelText.Length > 77 ? 8f : 5f );
+
+        // the player examines PAINTINGS
+        else {
+            // todo: CHECK IF THE PLAYER HAS THE MAGNIFYING GLASS
+            bool hasMagnifyingGlass = true;
+
+            // the player doesn't have magnifying glass - any painting would display a hint
+            if (!hasMagnifyingGlass) {
+                bottomPanelText = "My eyes are not what they used to be… I wish there was\n"
+                                + "something that could help me see all those details.";
+            }
+            
+            // has magnifying glass
+            else {
+
+                // has discovered charles has the compass piece
+                if (isCompassPaintingDiscovered && interactable.name == "puzzlePaintingCharles") {
+                    bottomPanelText = "Charles: Ah, this little thing? Served me well while it lasted,\n"
+                                    + "and now, perhaps, it will serve you.";
+                    // todo: GIVE THE PLAYER THE COMPASS
+                }
+
+                // hasn't discovered charles has the compass piece
+                else {
+                    switch (interactable.name) {
+                        case "puzzlePaintingCharles":
+                            if (!isCompassPaintingDiscovered)
+                                bottomPanelText = isCompassPaintingDiscovered ?
+                                                    "Have you found the rest of the pieces?"
+                                                    : "Charles... What happened to you?";
+                            break;
+                        case "puzzlePainting1":
+                            bottomPanelText = "What intricate machines! I could use one of those on my ship.";
+                            break;
+                        case "puzzlePainting2":
+                            bottomPanelText = "A city of so many opportunities, so many hopes… It's like just yesterday"
+                                            + "\nI arrived there on this train… I wonder how my old academy is doing.";
+                            break;
+                        case "puzzlePainting3":
+                            bottomPanelText = "Sailor: Charles, that rascal… I'll never forgive you for stealing my \n"
+                                            + "compass! Carrying it with such pride in his pocket at all times, too!";
+                            isCompassPaintingDiscovered = true;
+                            break;
+                        default:
+                            bottomPanelText = "What a wonderful work of art!";
+                            break;
+                    }
+                }
+            }
+        }
+
+        // show the flavor text / hint and hide it after several seconds 
+        bottomPanel.text = bottomPanelText;
+        Invoke("HideText", bottomPanelText.Length < 85 ? (bottomPanelText. Length < 50 ? 2f : 5f) : 7.5f );
     }
 
 
