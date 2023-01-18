@@ -364,13 +364,24 @@ public class ItemInteractionHandler : MonoBehaviour
 
     private void Teleport(GameObject interactable, RaycastHit hit) {
         Debug.Log("TELEPORT");
-        
-        var portalObject = hit.transform.GetComponent<Teleport>();
-        portalObject.TeleportPlayer();
 
         // check to see if the player entered the portal to then captain's cabin [end game]
         if (interactable.name == "portalCC") {
             Debug.Log("to CC");
+
+            // check if all compass pieces were collected
+            if (compassCurrent < compassTotal) {
+                bottomPanel.text = "I need something to unlock this portal.";
+
+                // if the player has found a compass piece - show how many pieces is left
+                if (compassCurrent > 0) {
+                    bottomPanel.text += "\n[ " + (compassTotal - compassCurrent) + " more compass pieces needed ]";
+                }
+
+                bottomPanel.gameObject.SetActive(true);
+                Invoke("HideText", 3f);
+                return;
+            }
 
             // unveil the shelf with collectibles
             curtain.SetActive(false);
@@ -386,6 +397,9 @@ public class ItemInteractionHandler : MonoBehaviour
             Debug.Log("to MAIN MENU");
             ResetGame();
         }
+
+        var portalObject = hit.transform.GetComponent<Teleport>();
+        portalObject.TeleportPlayer();
     }
 
     private void ResetGame() {
