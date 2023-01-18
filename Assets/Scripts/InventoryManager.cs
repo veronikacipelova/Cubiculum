@@ -40,8 +40,8 @@ public class InventoryManager : MonoBehaviour
         Instance = this;    
     }
 
-    public List<GameObject> getItemInstances() {
-        return ItemsInstances;
+    public List<Item> getItems() {
+        return Items;
     }
 
     public void Add(Item item)
