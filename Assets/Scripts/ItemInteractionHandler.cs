@@ -10,6 +10,7 @@ public class ItemInteractionHandler : MonoBehaviour
     private float interactionDistance = 2f;
     public LayerMask interactableObjects;
 
+
     [Header("Cursor")]
     public RawImage cursor;  // where the cursor picture is
     public Texture cursorDefault;
@@ -21,15 +22,18 @@ public class ItemInteractionHandler : MonoBehaviour
     public TMP_Text bottomPanel;
     private string bottomPanelText;
 
+
     [Header("Map")]
     public RawImage minimap;
 
     private Texture minimapTexture;
     private bool isMinimapActive = false;
 
+
     // name of path (where the minimaps are located) and minimap image itself
     private string minimapFolder;
     private string minimapName;
+
 
     // variables showing whether a map piece was already picked up or not
     private bool r1 = false;
@@ -53,12 +57,14 @@ public class ItemInteractionHandler : MonoBehaviour
     public PlayerMovement PlayerMovement;
     // public MoveCamera MoveCamera;
 
+
     [Header("CC")]
     public GameObject curtain;  // hides the collectibles
     public GameObject portalEnter; // portal for starting the game [to R1]
     public GameObject portalExit;  // portal for exiting the game [to the main menu]
     public RawImage charlesLetter;  // charles letter zoomed in so that the player can read it
     private bool isCharlesLetterActive = false;
+
 
     [Header("Collectibles")]
     public GameObject collectibleR1;
@@ -67,6 +73,14 @@ public class ItemInteractionHandler : MonoBehaviour
     public GameObject collectibleR4;
     public GameObject collectibleR5;
     public GameObject collectibleR6;
+
+
+    [Header("Compass pieces")]
+    public GameObject cpArrow;
+    public GameObject cpMechanism;
+    public GameObject cpBox;
+    private int compassCurrent = 0;
+    private int compassTotal = 3;
 
 
     // [ puzzle 3 ] -- paintings
@@ -106,6 +120,11 @@ public class ItemInteractionHandler : MonoBehaviour
         collectibleR4.SetActive(false);
         collectibleR5.SetActive(false);
         collectibleR6.SetActive(false);
+
+        // compass pieces
+        // cpArrow.SetActive(false);
+        // cpMechanism.SetActive(false);
+        cpBox.SetActive(false);
     }
 
     void Update()
@@ -171,6 +190,7 @@ public class ItemInteractionHandler : MonoBehaviour
                 case "itemMap": cursorLabelText = "Pick up"; break;
                 case "portal": cursorLabelText = "Enter"; break;
                 case "puzzle": cursorLabelText = "Start the puzzle"; break;
+                case "compass": cursorLabelText = "Take the compass piece"; break;
                 default: cursorLabelText = null; break;
             }
             cursorLabel.text = cursorLabelText;
@@ -190,6 +210,7 @@ public class ItemInteractionHandler : MonoBehaviour
                     case "itemMap": AddMinimap(interactable); break;
                     case "portal": Teleport(interactable, hit); break;
                     case "puzzle": OpenPuzzle(interactable); break;
+                    case "compass": GetCompassPiece(interactable); break;
                     default: break;
                 }                
             }
@@ -208,6 +229,13 @@ public class ItemInteractionHandler : MonoBehaviour
         }
     }
 
+    
+    private void GetCompassPiece(GameObject interactable) {
+        Debug.Log("COMPASS");
+        compassCurrent++;
+        Destroy(interactable);
+    }
+    
     private void Examine(GameObject interactable) {
         Debug.Log("EXAMINE");
 
@@ -269,39 +297,39 @@ public class ItemInteractionHandler : MonoBehaviour
             
             // has magnifying glass
             else {
-
-                // has discovered charles has the compass piece
-                if (isCompassPaintingDiscovered && interactable.name == "puzzlePaintingCharles") {
-                    bottomPanelText = "Charles: Ah, this little thing? Served me well while it lasted,\n"
+                switch (interactable.name) {
+                    case "puzzlePaintingCharles":
+                        if (isCompassPaintingDiscovered) {
+                            if (cpBox) {
+                                bottomPanelText = "Charles: Ah, this little thing? Served me well while it lasted,\n"
                                     + "and now, perhaps, it will serve you.";
-                    // todo: GIVE THE PLAYER THE COMPASS
-                }
-
-                // hasn't discovered charles has the compass piece
-                else {
-                    switch (interactable.name) {
-                        case "puzzlePaintingCharles":
-                            if (!isCompassPaintingDiscovered)
-                                bottomPanelText = isCompassPaintingDiscovered ?
-                                                    "Have you found the rest of the pieces?"
-                                                    : "Charles... What happened to you?";
-                            break;
-                        case "puzzlePainting1":
-                            bottomPanelText = "What intricate machines! I could use one of those on my ship.";
-                            break;
-                        case "puzzlePainting2":
-                            bottomPanelText = "A city of so many opportunities, so many hopes… It's like just yesterday"
-                                            + "\nI arrived there on this train… I wonder how my old academy is doing.";
-                            break;
-                        case "puzzlePainting3":
-                            bottomPanelText = "Sailor: Charles, that rascal… I'll never forgive you for stealing my \n"
-                                            + "compass! Carrying it with such pride in his pocket at all times, too!";
-                            isCompassPaintingDiscovered = true;
-                            break;
-                        default:
-                            bottomPanelText = "What a wonderful work of art!";
-                            break;
-                    }
+                                cpBox.SetActive(true);
+                            }
+                            else {
+                                bottomPanelText = "Charles: So, have you found the rest of the compass pieces?";
+                            }
+                        }
+                        else {
+                            bottomPanelText = "Charles... What happened to you?";
+                        }
+                        
+                        break;
+                    
+                    case "puzzlePainting1":
+                        bottomPanelText = "What intricate machines! I could use one of those on my ship.";
+                        break;
+                    case "puzzlePainting2":
+                        bottomPanelText = "A city of so many opportunities, so many hopes… It's like just yesterday"
+                                        + "\nI arrived there on this train… I wonder how my old academy is doing.";
+                        break;
+                    case "puzzlePainting3":
+                        bottomPanelText = "Sailor: Charles, that rascal… I'll never forgive you for stealing my \n"
+                                        + "compass! Carrying it with such pride in his pocket at all times, too!";
+                        isCompassPaintingDiscovered = true;
+                        break;
+                    default:
+                        bottomPanelText = "What a wonderful work of art!";
+                        break;
                 }
             }
         }
