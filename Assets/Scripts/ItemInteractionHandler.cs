@@ -90,7 +90,7 @@ public class ItemInteractionHandler : MonoBehaviour
     [Header("Puzzle 2")]
     public GameObject portalR5;
     private bool hasCoin = false;
-    private bool hasMganet = false;
+    private bool hasMagnet = false;
 
     // [ puzzle 3 ] -- paintings
     private bool hasMagnifyingGlass = false;
