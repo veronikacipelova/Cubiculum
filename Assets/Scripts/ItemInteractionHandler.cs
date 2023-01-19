@@ -203,6 +203,7 @@ public class ItemInteractionHandler : MonoBehaviour
                 case "portal": cursorLabelText = "Enter"; break;
                 case "puzzle": cursorLabelText = "Start the puzzle"; break;
                 case "compass": cursorLabelText = "Take the compass piece"; break;
+                case "use": cursorLabelText = "Use"; break;
                 default: cursorLabelText = null; break;
             }
             cursorLabel.text = cursorLabelText;
@@ -232,6 +233,7 @@ public class ItemInteractionHandler : MonoBehaviour
                     case "portal": Teleport(interactable, hit); break;
                     case "puzzle": OpenPuzzle(interactable); break;
                     case "compass": GetCompassPiece(interactable); break;
+                    case "use": UseItem(interactable); break;
                     default: break;
                 }                
             }
@@ -257,6 +259,17 @@ public class ItemInteractionHandler : MonoBehaviour
         Destroy(interactable);
     }
     
+    private void UseItem(GameObject interactable) {
+        var itemName = inventory[InventoryManager.Instance.SelectedItem].name;
+        switch (itemName) {
+            case "Coin":
+                if (interactable.name == "puzzle-CoinHole")
+                    portalR5.SetActive(true);
+                break;
+            default: break;
+        }
+    }
+
     private void Examine(GameObject interactable) {
         Debug.Log("EXAMINE");
 

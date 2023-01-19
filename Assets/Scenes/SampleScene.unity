@@ -11390,6 +11390,7 @@ MonoBehaviour:
   cpArrow: {fileID: 1770557471}
   cpMechanism: {fileID: 1416300774}
   cpBox: {fileID: 710962014}
+  portalR5: {fileID: 149109538}
 --- !u!4 &1276764860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480340, guid: 2f1666ad9b7fdd7459a360619d6ccffd, type: 3}

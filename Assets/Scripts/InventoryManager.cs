@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     private int MenuActive;
     private int ItemAmount;
     private int PlayerChosenItem;
-    private int SelectedItem;
+    public int SelectedItem;
     private List<GameObject> ItemsInstances = new List<GameObject>();
     public GameObject InventoryMenu;
     public static InventoryManager Instance;
