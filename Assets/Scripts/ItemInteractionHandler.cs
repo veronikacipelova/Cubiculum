@@ -83,6 +83,15 @@ public class ItemInteractionHandler : MonoBehaviour
     private int compassTotal = 3;
 
 
+    // PUZZLES
+    List<Item> inventory;
+
+    // [ puzzle 2 ] -- labyrinth
+    [Header("Puzzle 2")]
+    public GameObject portalR5;
+    private bool hasCoin = false;
+    private bool hasMganet = false;
+
     // [ puzzle 3 ] -- paintings
     private bool hasMagnifyingGlass = false;
     private bool isCompassPaintingDiscovered = false;
@@ -97,6 +106,7 @@ public class ItemInteractionHandler : MonoBehaviour
         // [CC] portals
         portalEnter.SetActive(true);
         portalExit.SetActive(false);
+        portalR5.SetActive(false);
 
         // UI elements
         cursor.texture = cursorDefault;
@@ -123,8 +133,10 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // compass pieces
         // cpArrow.SetActive(false);
-        // cpMechanism.SetActive(false);
+        cpMechanism.SetActive(true);
         cpBox.SetActive(false);
+
+        inventory = InventoryManager.Instance.getItems();
     }
 
     void Update()
@@ -203,7 +215,16 @@ public class ItemInteractionHandler : MonoBehaviour
                         if (hit.transform.TryGetComponent(out objectToTake)) {
                             objectToTake.Disappear();
                         }
-                        // AddToInventory(interactable, hit);
+
+                        // todo: look at optimizations? the list is small though.
+                        // is this where the check should be? could put it where the item is picked up
+                        if (!hasMagnifyingGlass) {
+                            hasMagnifyingGlass = inventory.Find(i => i.name == "Magnifying glass") ? true : false;
+                        }
+                        if (!hasCoin) {
+                            hasCoin = inventory.Find(i => i.name == "Coin") ? true : false;
+                        }
+
                         break;
                     case "itemCollectible": AddCollectible(interactable); break;
                     case "itemExaminable": Examine(interactable); break;
@@ -281,13 +302,6 @@ public class ItemInteractionHandler : MonoBehaviour
 
         // the player examines PAINTINGS
         else {
-            // check if the player has the magnifying glass
-            // todo: look at optimizations? the list is small though. also, is this the correct spot for this?
-            // could put it where the item is picked up
-            if (!hasMagnifyingGlass) {
-                List<Item> inventory = InventoryManager.Instance.getItems();
-                hasMagnifyingGlass = inventory.Find(i => i.name == "Magnifying glass") ? true : false;
-            }
 
             // the player STILL doesn't have magnifying glass - any painting would display a hint
             if (!hasMagnifyingGlass) {
