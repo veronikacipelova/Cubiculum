@@ -2080,6 +2080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0504ebda35c549308a41867f7e7b876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedItem: 0
   InventoryMenu: {fileID: 266394394}
   Items: []
   ItemContent: {fileID: 1521742389}
@@ -2559,7 +2560,7 @@ MonoBehaviour:
     ---------------------
 
     C
-    = show controls
+    = toggle controls
 
     M = toggle map
 
@@ -14139,7 +14140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e8d49df1caba45e198fc47c01b85f4f, type: 2}
   m_sharedMaterial: {fileID: -5313723745922760291, guid: 5e8d49df1caba45e198fc47c01b85f4f, type: 2}
@@ -17109,7 +17110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6678741799337419161, guid: cd02312138557724093b712e9301629a, type: 3}
       propertyPath: m_TagString
-      value: puzzle
+      value: use
       objectReference: {fileID: 0}
     - target: {fileID: 6678741799541559999, guid: cd02312138557724093b712e9301629a, type: 3}
       propertyPath: m_Name
